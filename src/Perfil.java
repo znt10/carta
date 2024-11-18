@@ -29,7 +29,7 @@ public class Perfil {
                 
 
                 } else {
-                    // Criação de uma nova conta
+                    
                     try (FileWriter fw = new FileWriter(nomeArquivo)) {
             
                         System.out.println("Perfil criado: " + nomeArquivo);
@@ -78,7 +78,7 @@ public class Perfil {
     }
 
     public void acessarPerfil() {
-        // Mostra os dados do perfil com uma interface simples
+    
         System.out.println("O meu nome é " + getNome());
         editarPerfil();
     }
