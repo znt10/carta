@@ -57,8 +57,8 @@ public class Perfil {
     }
 
     private String CouVouI(){
-       String op = sc.nextLine();
-       char pri = op.toUpperCase().charAt(0);
+    String op = sc.nextLine();
+    char pri = op.toUpperCase().charAt(0);
         return switch (pri) {
             case 'C' -> "CRIAR";
             case 'V' -> "VER";
@@ -69,7 +69,7 @@ public class Perfil {
     public void armazenarcartas() {
         String nomeArquivo = getNome() + ".txt";
 
-        try (FileWriter fw = new FileWriter(nomeArquivo)) {
+        try (FileWriter fw = new FileWriter(nomeArquivo,true)) {
             fw.write(missao.getColecao().getCarta().toString());
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -103,14 +103,14 @@ public class Perfil {
     }
 
     private String AouS() {
-        System.out.println("ALUNO ou SUPERVISOR");
-        String op = sc.nextLine();
-        char primeira = op.toUpperCase().charAt(0);
-        return switch (primeira) {
-            case 'A' -> "ALUNO";
-            case 'S' -> "SUPERVISOR";
-            default -> "";
-        };
+        while (true) {
+            System.out.println("Digite ALUNO ou SUPERVISOR:");
+            String op = sc.nextLine().toUpperCase();
+            if (op.equals("ALUNO") || op.equals("SUPERVISOR")) {
+                return op;
+            }
+            System.out.println("Entrada inválida. Tente novamente.");
+        }
     }
 
     public String getNome() {
