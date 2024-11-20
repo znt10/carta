@@ -5,7 +5,8 @@
 
 public class Main {
     public static void main(String[] args) {
-
+        CriarM c = new CriarM();
+        c.jogoDaMemeria();
         Perfil p = new Perfil();
         Supervisor s = new Supervisor();
         p.criarPerfil(s);
