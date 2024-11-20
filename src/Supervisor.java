@@ -1,9 +1,8 @@
 import java.io.*;
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Supervisor {
-    private static String nome;
+
     private int senha = 12345;
     Scanner sc = new Scanner(System.in);
 

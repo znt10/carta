@@ -1,5 +1,4 @@
 import java.io.*;
-import java.util.PrimitiveIterator;
 import java.util.Scanner;
 
 public class Perfil {
