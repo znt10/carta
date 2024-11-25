@@ -8,15 +8,17 @@ public class DesenhoSimples extends JPanel {
         super.paintComponent(g);
         g.setColor(Color.BLUE);
 
-        // Desenhar um quadrado
-        g.fillRect(50, 50, 100, 100);
+        
+        g.fillRect(50, 50, 1600, 100);
 
-        // Desenhar um círculo
+        
         g.setColor(Color.RED);
         g.fillOval(200, 50, 100, 100);
     }
 
-    public static void main(String[] args) {
+    public static void de() {
+
+        
         JFrame frame = new JFrame();
         DesenhoSimples painel = new DesenhoSimples();
         frame.add(painel);
