@@ -8,8 +8,8 @@ public class Supervisor {
 
 
 
-    public void criarM(Missao missao){
-        missao.criarMissao();
+    public void criarM(Perfil p){
+        p.getMissao().criarMissao(p);
     }
 
     public void verConversa(String nome){
@@ -64,8 +64,9 @@ public class Supervisor {
                     p.getMissao().getColecao().cartinhas(p);
                     return;
                 } else if (primeira1 == 'A' || primeira1 == 'F') {
+                    //bug quando nao tem missao
                     System.out.println();
-                    p.getMissao().fazerMissao();
+                    p.getMissao().fazerMissao(p);
                     p.armazenarcartas();
                     return;
                 }return;

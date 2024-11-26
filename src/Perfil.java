@@ -22,10 +22,9 @@ public class Perfil {
             case "ALUNO":
                 String nomeArquivo = nome + ".txt";
                 File arquivo = new File(nomeArquivo);
-
+                //verificando se o arquivo conta existe
                 if (arquivo.exists()) {
-                    System.out.println("O " + getNome() + " possui cartinhas");
-                
+                    System.out.println("O " + getNome() + " Conta");
                 } else {
                     
                     try (FileWriter fw = new FileWriter(nomeArquivo)) {
@@ -43,9 +42,11 @@ public class Perfil {
                 sc.nextLine();
                 System.out.println("CRIAR MISSAO\nINVENTARIO\nVER CONVERSA");
                 switch (CouVouI()){
-                    case "CRIAR" -> s.criarM(missao);
+                    case "CRIAR" -> s.criarM(this);
                     case "VER" -> s.verConversa(nome);
                     case "INVENTARIO" -> s.inventario();
+                    default -> System.out.println("Opção invalida");
+                    
                 }
                 break;
         }
@@ -64,14 +65,21 @@ public class Perfil {
         };
     }
     public void armazenarcartas() {
-        String nomeArquivo = getNome() + ".txt";
+        try (BufferedReader br = new BufferedReader(new FileReader(nome+"ATA.txt"))) {
+            String linha;
+            String nomeArquivo = getNome() + ".txt";
 
-        try (FileWriter fw = new FileWriter(nomeArquivo,true)) {
-            fw.write(missao.getColecao().getCarta().toString());
+            if((linha = br.readLine()) != null){
+                try (FileWriter fw = new FileWriter(nomeArquivo,true)) {
+                    fw.write(missao.getColecao().getCarta().toString());
+                } catch (IOException e) {
+                    System.err.println("Erro ao ler o arquivo: " + e.getMessage());
+            }}
+
+
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.err.println("Erro ao ler o arquivo: " + e.getMessage());
         }
-
     }
 
     public void acessarPerfil() {

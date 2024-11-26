@@ -5,14 +5,13 @@
 
 public class Main {
     public static void main(String[] args) {
-        CriarM c = new CriarM();
-        c.jogoDaMemeria();
+        //CriarM c = new CriarM();
+        //c.jogoDaMemeria();
         //c.jogoDeCores();
         // so ttem  janela depois de criar conta 
-        
-        // Perfil p = new Perfil();
-        // Supervisor s = new Supervisor();
-        // p.criarPerfil(s);
+        Perfil p = new Perfil();
+        Supervisor s = new Supervisor();
+        p.criarPerfil(s);
         // Criar a janela principal
         /*JFrame frame = new JFrame("Sistema de Cartas e Missões");
         frame.setSize(600, 400);

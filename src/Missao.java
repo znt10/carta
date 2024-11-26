@@ -1,3 +1,6 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -7,10 +10,19 @@ public class Missao {
     private ArrayList<String> nomes = new ArrayList<>();
     Colecao colecao = new Colecao();
     CriarM m = new CriarM();
+    private String nomeAt;
     private static Scanner sc = new Scanner(System.in);
 
-    public void criarMissao(){
-        escolherM();
+    public void criarMissao(Perfil p){
+        this.nomeAt = escolherM();
+        System.out.println(nomeAt);
+        //verificando o arquivos de ativida
+        String nomeArquivo = p.getNome() + "ATA.txt";
+        try (FileWriter fw = new FileWriter(nomeArquivo)){
+            fw.write(nomeAt);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());}
+        
     }
 
     private String escolherM(){
@@ -26,15 +38,24 @@ public class Missao {
         return"";
     }
 
-    public void fazerMissao(){
-        if(escolherM() == "Memoria"){
-            m.jogoDaMemeria();
-        }else if(escolherM() == "Cores"){
-            m.jogoDeCores();
+    public void fazerMissao(Perfil p){
+        try(BufferedReader br = new BufferedReader(new FileReader(p.getNome()+"ATA.txt"))) {
+            String linha;
+            while ((linha = br.readLine()) != null) {
+                if(linha.equals("Memoria")){
+                    m.jogoDaMemeria();
+                    ganharBoosters();
+                }else if(linha.equals("Cores")){
+                    m.jogoDeCores();
+                    System.out.println();
+                    ganharBoosters();
+                } }
+            } catch (Exception e) {
+                System.out.println("ERRO"+ e.getLocalizedMessage());
         }
-        ganharBoosters();
 
     }
+
 
     private void ganharBoosters(){
         frases.add("Olá!");
