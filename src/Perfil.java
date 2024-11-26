@@ -26,11 +26,9 @@ public class Perfil {
                 if (arquivo.exists()) {
                     System.out.println("O " + getNome() + " possui cartinhas");
                 
-
                 } else {
                     
                     try (FileWriter fw = new FileWriter(nomeArquivo)) {
-            
                         System.out.println("Perfil criado: " + nomeArquivo);
                     } catch (IOException e) {
                         throw new RuntimeException(e);

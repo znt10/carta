@@ -5,8 +5,9 @@
 
 public class Main {
     public static void main(String[] args) {
-        CriarM c = new CriarM();c.jogoDaMemeria();
-        c.jogoDeCores();
+        CriarM c = new CriarM();
+        c.jogoDaMemeria();
+        //c.jogoDeCores();
         // so ttem  janela depois de criar conta 
         
         // Perfil p = new Perfil();

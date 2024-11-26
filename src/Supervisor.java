@@ -53,8 +53,7 @@ public class Supervisor {
             switch (primeira) {
                 case 'S':
                     System.out.println("Saiu");
-                break;
-                
+                        break;
                 case 'C':
                 
                 System.out.println("Quer Fazer Atividades?\nVer sua colocao?");

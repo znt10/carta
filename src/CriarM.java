@@ -27,7 +27,7 @@ Scanner sc = new Scanner(System.in);
             System.out.println("Cartas: " +cartasEncontradas);
             for (int i = 0; i < cartasEncontradas.size(); i++) {
                 if(cartasEncontradas.get(i).contains("?")){
-                System.out.print(i + " - " + cartasEncontradas.get(i) + "  ");
+                    System.out.print(i + " - " + cartasEncontradas.get(i) + "  ");
             }}
             System.out.println();
             System.out.println("Escolha a primeira carta");

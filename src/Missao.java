@@ -1,17 +1,37 @@
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Missao {
     private ArrayList<String> frases = new ArrayList<>();
     private ArrayList<String> nomes = new ArrayList<>();
     Colecao colecao = new Colecao();
+    CriarM m = new CriarM();
+    private static Scanner sc = new Scanner(System.in);
+
     public void criarMissao(){
+        escolherM();
+    }
 
+    private String escolherM(){
 
+        System.out.println("Jogo da Memoria ou Jogo das Cores");
+        String escolha = sc.nextLine().trim();
+        char escolhaChar = escolha.toUpperCase().charAt(0);
+        if(escolhaChar =='M'){
+            return "Memoria";
+        }else if(escolhaChar =='C'){
+            return "Cores";
+        }
+        return"";
     }
 
     public void fazerMissao(){
-        
+        if(escolherM() == "Memoria"){
+            m.jogoDaMemeria();
+        }else if(escolherM() == "Cores"){
+            m.jogoDeCores();
+        }
         ganharBoosters();
 
     }
