@@ -5,66 +5,66 @@
 
 public class Main {
     public static void main(String[] args) {
-        //CriarM c = new CriarM();
+        CriarM c = new CriarM();
         //c.jogoDaMemeria();
-        //c.jogoDeCores();
+        c.jogoDeCores();
         // so ttem  janela depois de criar conta 
-        Perfil p = new Perfil();
-        Supervisor s = new Supervisor();
-        p.criarPerfil(s);
-        // Criar a janela principal
-        /*JFrame frame = new JFrame("Sistema de Cartas e Missões");
-        frame.setSize(600, 400);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new BorderLayout());
+            //Perfil p = new Perfil();
+            //Supervisor s = new Supervisor();
+            //p.criarPerfil(s);
+            // Criar a janela principal
+            /*JFrame frame = new JFrame("Sistema de Cartas e Missões");
+            frame.setSize(600, 400);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setLayout(new BorderLayout());
 
-        // Criar painel principal
-        JPanel painel = new JPanel();
-        painel.setLayout(new GridLayout(3, 1, 10, 10));
+            // Criar painel principal
+            JPanel painel = new JPanel();
+            painel.setLayout(new GridLayout(3, 1, 10, 10));
 
-        // Botão para criar perfil
-        JButton btnCriarPerfil = new JButton("Criar Perfil");
-        btnCriarPerfil.addActionListener(e -> {
-            // Abrir caixa de diálogo para digitar o nome
-            String nome = JOptionPane.showInputDialog(frame, "Digite o nome do perfil:");
+            // Botão para criar perfil
+            JButton btnCriarPerfil = new JButton("Criar Perfil");
+            btnCriarPerfil.addActionListener(e -> {
+                // Abrir caixa de diálogo para digitar o nome
+                String nome = JOptionPane.showInputDialog(frame, "Digite o nome do perfil:");
 
-            if (nome != null && !nome.trim().isEmpty()) {
+                if (nome != null && !nome.trim().isEmpty()) {
+                    Perfil perfil = new Perfil();
+                    perfil.setNome(nome); // Configurar o nome no perfil
+                    Supervisor supervisor = new Supervisor();
+                    String con = JOptionPane.showInputDialog(frame,"Digite fazer atividade ou Ver coleçao");
+                    supervisor.conversa(perfil);
+
+                    JOptionPane.showMessageDialog(frame, "Perfil criado para: " + nome);
+                } else {
+                    JOptionPane.showMessageDialog(frame, "O nome do perfil não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
+                }
+            });
+
+            // Botão para visualizar cartas
+            JButton btnVerCartas = new JButton("Ver Cartas");
+            btnVerCartas.addActionListener(e -> {
                 Perfil perfil = new Perfil();
-                perfil.setNome(nome); // Configurar o nome no perfil
-                Supervisor supervisor = new Supervisor();
-                String con = JOptionPane.showInputDialog(frame,"Digite fazer atividade ou Ver coleçao");
-                supervisor.conversa(perfil);
+                Colecao colecao = new Colecao();
+                colecao.cartinhas(perfil);
+            });
 
-                JOptionPane.showMessageDialog(frame, "Perfil criado para: " + nome);
-            } else {
-                JOptionPane.showMessageDialog(frame, "O nome do perfil não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
-            }
-        });
+            // Botão para realizar missões
+            JButton btnFazerMissao = new JButton("Fazer Missão");
+            btnFazerMissao.addActionListener(e -> {
 
-        // Botão para visualizar cartas
-        JButton btnVerCartas = new JButton("Ver Cartas");
-        btnVerCartas.addActionListener(e -> {
-            Perfil perfil = new Perfil();
-            Colecao colecao = new Colecao();
-            colecao.cartinhas(perfil);
-        });
+                Missao missao = new Missao();
+                missao.fazerMissao();
+                JOptionPane.showMessageDialog(frame, "Missão realizada! Veja suas cartas.");
+            });
 
-        // Botão para realizar missões
-        JButton btnFazerMissao = new JButton("Fazer Missão");
-        btnFazerMissao.addActionListener(e -> {
+            // Adicionar botões ao painel
+            painel.add(btnCriarPerfil);
+            painel.add(btnVerCartas);
+            painel.add(btnFazerMissao);
 
-            Missao missao = new Missao();
-            missao.fazerMissao();
-            JOptionPane.showMessageDialog(frame, "Missão realizada! Veja suas cartas.");
-        });
-
-        // Adicionar botões ao painel
-        painel.add(btnCriarPerfil);
-        painel.add(btnVerCartas);
-        painel.add(btnFazerMissao);
-
-        // Adicionar painel à janela
-        frame.add(painel, BorderLayout.CENTER);
+            // Adicionar painel à janela
+            frame.add(painel, BorderLayout.CENTER);
 
         // Tornar a janela visível
         frame.setVisible(true);

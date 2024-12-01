@@ -55,7 +55,7 @@ public class Perfil {
     }
 
     private String CouVouI(){
-    String op = sc.nextLine();
+    String op = sc.nextLine(); 
     char pri = op.toUpperCase().charAt(0);
         return switch (pri) {
             case 'C' -> "CRIAR";
