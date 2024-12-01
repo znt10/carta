@@ -8,7 +8,7 @@ public class Main {
         CriarM c = new CriarM();
         //c.jogoDaMemeria();
         c.jogoDeCores();
-        // so ttem  janela depois de criar conta 
+        //so ttem  janela depois de criar conta 
             //Perfil p = new Perfil();
             //Supervisor s = new Supervisor();
             //p.criarPerfil(s);
