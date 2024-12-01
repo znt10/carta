@@ -33,7 +33,7 @@ public class Perfil {
                         throw new RuntimeException(e);
                     }
                 }
-                s.conversa(this);
+                
                 return;
 
             case "SUPERVISOR":
@@ -43,8 +43,6 @@ public class Perfil {
                 System.out.println("CRIAR MISSAO\nINVENTARIO\nVER CONVERSA");
                 switch (CouVouI()){
                     case "CRIAR" -> s.criarM(this);
-                    case "VER" -> s.verConversa(nome);
-                    case "INVENTARIO" -> s.inventario();
                     default -> System.out.println("Opção invalida");
                     
                 }
@@ -59,8 +57,6 @@ public class Perfil {
     char pri = op.toUpperCase().charAt(0);
         return switch (pri) {
             case 'C' -> "CRIAR";
-            case 'V' -> "VER";
-            case 'I' -> "INVENTARIO";
             default -> "";
         };
     }
@@ -72,6 +68,7 @@ public class Perfil {
             if((linha = br.readLine()) != null){
                 try (FileWriter fw = new FileWriter(nomeArquivo,true)) {
                     fw.write(missao.getColecao().getCarta().toString());
+                    fw.write("\n");
                 } catch (IOException e) {
                     System.err.println("Erro ao ler o arquivo: " + e.getMessage());
             }}

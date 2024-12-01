@@ -15,7 +15,7 @@ public class Missao {
 
     public void criarMissao(Perfil p){
         this.nomeAt = escolherM();
-        System.out.println(nomeAt);
+
         //verificando o arquivos de ativida
         String nomeArquivo = p.getNome() + "ATA.txt";
         try (FileWriter fw = new FileWriter(nomeArquivo)){
@@ -44,12 +44,15 @@ public class Missao {
             while ((linha = br.readLine()) != null) {
                 if(linha.equals("Memoria")){
                     m.jogoDaMemeria();
-                    ganharBoosters();
+                    System.out.println();
+                    
                 }else if(linha.equals("Cores")){
                     m.jogoDeCores();
                     System.out.println();
-                    ganharBoosters();
-                } }
+                    
+                }
+                ganharBoosters();
+                p.armazenarcartas(); }
             } catch (Exception e) {
                 System.out.println("ERRO"+ e.getLocalizedMessage());
         }
@@ -57,7 +60,7 @@ public class Missao {
     }
 
 
-    private void ganharBoosters(){
+    public void ganharBoosters(){
         frases.add("Olá!");
         frases.add("Tudo bem?");
         frases.add("Eu preciso de ajuda.");
