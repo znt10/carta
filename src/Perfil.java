@@ -7,7 +7,7 @@ public class Perfil {
     private Missao missao;
     private boolean sup = false;
     private boolean alu = false;
-    private String Supervisor;
+    private Supervisor Supervisor;
 
 
     private String nomedoA() {
@@ -18,9 +18,10 @@ public class Perfil {
     }
 
 
-    public void criarPerfil(Supervisor s) {
+    public void criarPerfil() {
         this.missao = new Missao();
         nomedoA();
+        this.Supervisor = new Supervisor();
 
         switch (AouS()) {
             case "ALUNO":
@@ -43,29 +44,31 @@ public class Perfil {
 
             case "SUPERVISOR":
                 System.out.println("Qual senha?");
-                System.out.println(s.certa(sc.nextInt()));
-                sc.nextLine();
-                System.out.println("CRIAR MISSAO");
+                System.out.println(Supervisor.certa(sc.nextInt()));
                 sup = true;
-                switch (CouVouI()){
-                    case "CRIAR" -> s.criarM(this);
-                    default -> System.out.println("Opção invalida");
+                sc.nextLine();
+                return;
+                //System.out.println("CRIAR MISSAO");
+                
+                //switch (CouVouI()){
+                  //  case "CRIAR" -> Supervisor.criarM(this);
+                    //default -> System.out.println("Opção invalida");
                     
-                }
-                break;
+               // }
+                
         }
 
 
     }
 
-    private String CouVouI(){
-    String op = sc.nextLine(); 
-    char pri = op.toUpperCase().charAt(0);
-        return switch (pri) {
-            case 'C' -> "CRIAR";
-            default -> "";
-        };
-    }
+    //private String CouVouI(){
+    //String op = sc.nextLine(); 
+    //char pri = op.toUpperCase().charAt(0);
+        //return switch (pri) {
+        //    case 'C' -> "CRIAR";
+        //    default -> "";
+      //  };
+    //}
     public void armazenarcartas() {
         try (BufferedReader br = new BufferedReader(new FileReader(nome+"ATA.txt"))) {
             String linha;
@@ -157,5 +160,15 @@ public class Perfil {
         this.alu = alu;
     }
 
+
+    public Supervisor getSupervisor() {
+        return Supervisor;
+    }
+
+
+    public void setSupervisor(Supervisor supervisor) {
+        Supervisor = supervisor;
+    }
+    
     
 }

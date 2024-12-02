@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 
 public class JanelaSupervisor {
 
-    public void criarJanela(Supervisor p) {
+    public void criarJanelaSupervisor(Perfil p) {
      // Criar a janela principal
             JFrame frame = new JFrame("Sistema do Supervisor");
             frame.setSize(600, 400);
@@ -22,7 +22,7 @@ public class JanelaSupervisor {
             // Botão para realizar missões
             JButton btnFazerMissao = new JButton("Criar Missão");
             btnFazerMissao.addActionListener(e -> {
-                
+                p.getSupervisor().criarM(p);
             });
 
 

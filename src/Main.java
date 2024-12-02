@@ -7,11 +7,15 @@ public class Main {
     public static void main(String[] args) {
         // so ttem  janela depois de criar conta 
         JanelaAluno j = new JanelaAluno();
+        JanelaSupervisor j2 = new JanelaSupervisor();
         Perfil p = new Perfil();
-        Supervisor s = new Supervisor();
-        p.criarPerfil(s);
+        p.criarPerfil();
+
         if(p.isAlu() == true){
             j.criarJanela(p);
+
+        }else if(p.isSup() == true){
+            j2.criarJanelaSupervisor(p);
         }
         
 }
