@@ -14,9 +14,11 @@ public class Supervisor {
 
 
 
-    public String certa(int numeros){
+    public String certo(int numeros, boolean sup){
         if(numeros == senha){
+            sup = true;
             return "A senha esta certa, acasse permitido";
+            
 
         }else{
             return "senha errada";

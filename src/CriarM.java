@@ -10,8 +10,10 @@ import java.util.Scanner;
 import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class CriarM {
     Scanner sc = new Scanner(System.in);
@@ -86,23 +88,12 @@ public class CriarM {
                 g.fillOval(250, 50, 90, 90);
                 g.setColor(Color.ORANGE);
                 g.fillOval(350, 50, 90, 90);
-
-                // Rótulos das cores
-                g.setColor(Color.BLACK);
-                g.drawString("Vermelho", 70, 160);
-                g.drawString("Azul", 180, 160);
-                g.drawString("Verde", 280, 160);
-                g.drawString("Laranja", 370, 160);
             }
         };
 
         j.add(p, BorderLayout.CENTER);
-
-    
         String[] cores = {"Vermelho", "Azul", "Verde", "Laranja"};
         corCorreta = cores[Random(cores)];
-
-
         JButton verificarBotao = new JButton(corCorreta);
         verificarBotao.addActionListener(e -> verificarCor());
         j.add(verificarBotao, BorderLayout.SOUTH);
@@ -158,4 +149,57 @@ public class CriarM {
             JOptionPane.showMessageDialog(null, "Cor errada! A cor correta era: " + corCorreta);
         }
     }
+
+
+
+public void jogoDeAdivinhacao() {
+    // Gerar o número aleatório entre 1 e 10
+    Random r = new Random();
+    int numeroCorreto = r.nextInt(10) + 1;
+
+    // Criar a janela principal
+    JFrame frame = new JFrame("Jogo de Adivinhação");
+    frame.setSize(400, 200);
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setLayout(new BorderLayout());
+
+    // Rótulo com instruções
+    JLabel label = new JLabel("Adivinhe o número entre 1 e 10!", JLabel.CENTER);
+    frame.add(label, BorderLayout.NORTH);
+
+    // Campo de entrada para o palpite
+    JTextField campoPalpite = new JTextField();
+    frame.add(campoPalpite, BorderLayout.CENTER);
+
+    // Botão para enviar o palpite
+    JButton botao = new JButton("Tentar");
+    frame.add(botao, BorderLayout.SOUTH);
+
+    // Adicionar ação ao botão
+    botao.addActionListener(e -> {
+        try {
+            int tentativa = Integer.parseInt(campoPalpite.getText());
+
+            if (tentativa == numeroCorreto) {
+                JOptionPane.showMessageDialog(frame, "Parabéns! Você acertou o número " + numeroCorreto + "!");
+                frame.dispose(); // Fecha a janela ao acertar
+            } else {
+                int diferenca = Math.abs(tentativa - numeroCorreto);
+                if (diferenca == 1) {
+                    label.setText("Muito próximo! Tente novamente.");
+                } else if (diferenca <= 3) {
+                    label.setText("Está próximo! Tente novamente.");
+                } else {
+                    label.setText("Está distante! Tente novamente.");
+                }
+                campoPalpite.setText(""); // Limpa o campo de entrada
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(frame, "Por favor, insira um número válido.");
+        }
+    });
+
+    // Tornar a janela visível
+    frame.setVisible(true);
+}
 }

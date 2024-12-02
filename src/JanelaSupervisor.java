@@ -5,9 +5,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class JanelaSupervisor {
+public class JanelaSupervisor extends Janela {
 
-    public void criarJanelaSupervisor(Perfil p) {
+    public void criarJanela(Perfil p) {
      // Criar a janela principal
             JFrame frame = new JFrame("Sistema do Supervisor");
             frame.setSize(600, 400);
@@ -34,4 +34,6 @@ public class JanelaSupervisor {
         // Tornar a janela visível
         frame.setVisible(true);
     }
+
+    
 }

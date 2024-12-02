@@ -27,17 +27,19 @@ public class Missao {
 
     private String escolherM(){
 
-        System.out.println("Jogo da Memoria ou Jogo das Cores");
+        System.out.println("Jogo da Memoria ou Jogo das Cores ou Jogo de Adivinhaçao");
         String escolha = sc.nextLine().trim();
         char escolhaChar = escolha.toUpperCase().charAt(0);
         if(escolhaChar =='M'){
             return "Memoria";
         }else if(escolhaChar =='C'){
             return "Cores";
-        }
+        }else if(escolhaChar =='A')
+            return "Adivinhação";
         return"";
     }
 
+    
     public void fazerMissao(Perfil p){
         try(BufferedReader br = new BufferedReader(new FileReader(p.getNome()+"ATA.txt"))) {
             String linha;
@@ -45,18 +47,18 @@ public class Missao {
                 if(linha.equals("Memoria")){
                     m.jogoDaMemeria();
                     System.out.println();
+                    
                 }else if(linha.equals("Cores")){
                     m.jogoDeCores();
                     System.out.println();
-                }
+                    
+                }else if(linha.equals("Adivinhacao"))
                 ganharBoosters();
                 p.armazenarcartas(); }
             } catch (Exception e) {
                 System.out.println("ERRO"+ e.getLocalizedMessage());
         }
-
     }
-
 
     public void ganharBoosters(){
         frases.add("Olá!");

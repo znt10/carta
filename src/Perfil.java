@@ -44,8 +44,7 @@ public class Perfil {
 
             case "SUPERVISOR":
                 System.out.println("Qual senha?");
-                System.out.println(Supervisor.certa(sc.nextInt()));
-                sup = true;
+                System.out.println(Supervisor.certo(sc.nextInt(),sup));
                 sc.nextLine();
                 return;
                 //System.out.println("CRIAR MISSAO");
