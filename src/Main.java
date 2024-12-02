@@ -3,8 +3,8 @@
 public class Main {
     public static void main(String[] args) {
         // so ttem  janela depois de criar conta 
-        JanelaAluno j = new JanelaAluno();
-        JanelaSupervisor j2 = new JanelaSupervisor();
+        Janela j = new JanelaAluno();
+        Janela j2 = new JanelaSupervisor();
         Perfil p = new Perfil();
         p.criarPerfil();
 
