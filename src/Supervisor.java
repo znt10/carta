@@ -14,9 +14,9 @@ public class Supervisor {
 
 
 
-    public String certo(int numeros, boolean sup){
+    public String certo(int numeros, Perfil p){
         if(numeros == senha){
-            sup = true;
+            p.setSup(true);
             return "A senha esta certa, acasse permitido";
             
 
