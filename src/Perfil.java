@@ -5,11 +5,15 @@ public class Perfil {
     private String nome;
     Scanner sc = new Scanner(System.in);
     private Missao missao;
+    private boolean sup = false;
+    private boolean alu = false;
+    private String Supervisor;
 
 
     private String nomedoA() {
         System.out.println("Qual nome do Aluno ou Aluna?");
         return this.nome = sc.nextLine();
+
 
     }
 
@@ -22,6 +26,7 @@ public class Perfil {
             case "ALUNO":
                 String nomeArquivo = nome + ".txt";
                 File arquivo = new File(nomeArquivo);
+                alu = true;
                 //verificando se o arquivo conta existe
                 if (arquivo.exists()) {
                     System.out.println("O " + getNome() + " Conta");
@@ -40,7 +45,8 @@ public class Perfil {
                 System.out.println("Qual senha?");
                 System.out.println(s.certa(sc.nextInt()));
                 sc.nextLine();
-                System.out.println("CRIAR MISSAO\nINVENTARIO\nVER CONVERSA");
+                System.out.println("CRIAR MISSAO");
+                sup = true;
                 switch (CouVouI()){
                     case "CRIAR" -> s.criarM(this);
                     default -> System.out.println("Opção invalida");
@@ -130,4 +136,26 @@ public class Perfil {
     public void setMissao(Missao missao) {
         this.missao = missao;
     }
+
+
+    public boolean isSup() {
+        return sup;
+    }
+
+
+    public void setSup(boolean sup) {
+        this.sup = sup;
+    }
+
+
+    public boolean isAlu() {
+        return alu;
+    }
+
+
+    public void setAlu(boolean alu) {
+        this.alu = alu;
+    }
+
+    
 }

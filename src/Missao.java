@@ -45,11 +45,9 @@ public class Missao {
                 if(linha.equals("Memoria")){
                     m.jogoDaMemeria();
                     System.out.println();
-                    
                 }else if(linha.equals("Cores")){
                     m.jogoDeCores();
                     System.out.println();
-                    
                 }
                 ganharBoosters();
                 p.armazenarcartas(); }
