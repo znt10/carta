@@ -2,6 +2,7 @@
 import java.util.Scanner;
 
 public class Supervisor {
+    private Boolean senhaCerta = false;
 
     private int senha = 12345;
     Scanner sc = new Scanner(System.in);
@@ -14,14 +15,10 @@ public class Supervisor {
 
 
 
-    public String certo(int numeros, Perfil p){
+    public void certo(int numeros, Perfil p){
         if(numeros == senha){
             p.setSup(true);
-            return "A senha esta certa, acasse permitido";
-            
-
-        }else{
-            return "senha errada";
+            senhaCerta = true;
         }
     }
 
@@ -65,5 +62,17 @@ public class Supervisor {
 
 
 
+    }
+
+
+
+    public Boolean getSenhaCerta() {
+        return senhaCerta;
+    }
+
+
+
+    public void setSenhaCerta(Boolean senhaCerta) {
+        this.senhaCerta = senhaCerta;
     }
 }

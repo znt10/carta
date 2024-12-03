@@ -1,51 +1,47 @@
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+import javax.swing.*;
 
-public class JanelaAluno  extends Janela{
+public class JanelaAluno extends Janela {
     public void criarJanela(Perfil p) {
-     // Criar a janela principal
-            JFrame frame = new JFrame("Sistema de Cartas e Missões");
-            frame.setSize(600, 400);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setLayout(new BorderLayout());
+        // Criar a janela principal
+        JFrame frame = new JFrame("Sistema do Aluno");
+        frame.setSize(800, 500);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(null); // Layout nulo para posicionamento manual
 
-            // Criar painel principal
-            JPanel painel = new JPanel();
-            painel.setLayout(new GridLayout(3, 1, 10, 10));
+        // Criar painel principal
+        
+        JLabel painel = new JLabel();
+        painel.setBounds(0, 0, frame.getWidth(), frame.getHeight()); // Layout nulo para os componentes dentro do painel
+        frame.add(painel);
 
+        // Botão para realizar missões
+        JButton btnFazerMissao = new JButton("Fazer Missão");
+        btnFazerMissao.setBounds(100, 100, 200, 20);
+        btnFazerMissao.addActionListener(e -> {
+            p.getMissao().fazerMissao(p);
+        });
 
-            // Botão para realizar missões
-            JButton btnFazerMissao = new JButton("Fazer Missão");
-            btnFazerMissao.addActionListener(e -> {
-                p.getMissao().fazerMissao(p);
-            });
+        // Botão para Editar Perfil
+        JButton bEditar = new JButton("Editar Perfil");
+        bEditar.setBounds(200, 200, 200, 20);
+        bEditar.addActionListener(e -> {
+            JOptionPane.showInputDialog(null, "Mudar o nome ou Sair");
+        });
 
-            // Botao para Editar Perfil
-            JButton bEditar = new JButton("Editar Perfil");
-            bEditar.addActionListener(e -> {
-                JOptionPane.showInputDialog(null,"Mudar o nome ou Sair");
-            });
+        // Botão para visualizar cartas
+        JButton btnVerCartas = new JButton("Ver Cartas");
+        btnVerCartas.setBounds(300, 300, 200, 20);
+        btnVerCartas.addActionListener(e -> {
+            p.getMissao().getColecao().cartinhas(p);
+        });
 
-            // Botão para visualizar cartas
-            JButton btnVerCartas = new JButton("Ver Cartas");
-            btnVerCartas.addActionListener(e -> {
-                p.getMissao().getColecao().cartinhas(p);
-            });
-
-            
-            // Adicionar botões ao painel
-            painel.add(bEditar);
-            painel.add(btnVerCartas);
-            painel.add(btnFazerMissao);
-            frame.add(painel, BorderLayout.CENTER);
+        // Adicionar botões ao painel
+        painel.add(bEditar);
+        painel.add(btnVerCartas);
+        painel.add(btnFazerMissao);
 
         // Tornar a janela visível
         frame.setVisible(true);
     }
-
 }

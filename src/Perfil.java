@@ -8,66 +8,38 @@ public class Perfil {
     private boolean sup = false;
     private boolean alu = false;
     private Supervisor Supervisor;
+    private String nomeArquivo;
+    public int getNomeArquivo;
 
 
-    private String nomedoA() {
-        System.out.println("Qual nome do Aluno ou Aluna?");
-        return this.nome = sc.nextLine();
+    
 
-
-    }
-
-
-    public void criarPerfil() {
-        this.missao = new Missao();
-        nomedoA();
-        this.Supervisor = new Supervisor();
-
-        switch (AouS()) {
-            case "ALUNO":
-                String nomeArquivo = nome + ".txt";
-                File arquivo = new File(nomeArquivo);
-                alu = true;
-                //verificando se o arquivo conta existe
-                if (arquivo.exists()) {
-                    System.out.println("O " + getNome() + " Conta");
-                } else {
+    public void criarPerfil(String nomeAlo) {
+        setAlu(true);
+        this.nomeArquivo = nomeAlo + ".txt";
+        File arquivo = new File(nomeArquivo);
+        
+        //verificando se o arquivo conta existe
+        if (arquivo.exists()) {
+            System.out.println("O " + nomeAlo + " Conta");
+        } else {
                     
-                    try (FileWriter fw = new FileWriter(nomeArquivo)) {
-                        System.out.println("Perfil criado: " + nomeArquivo);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
+            try (FileWriter fw = new FileWriter(nomeArquivo)) {
+                System.out.println("Perfil criado: " + nomeArquivo);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return;
                 
-                return;
 
-            case "SUPERVISOR":
-                System.out.println("Qual senha?");
-                System.out.println(Supervisor.certo(sc.nextInt(),this));
-                sc.nextLine();
-                return;
-                //System.out.println("CRIAR MISSAO");
-                
-                //switch (CouVouI()){
-                  //  case "CRIAR" -> Supervisor.criarM(this);
-                    //default -> System.out.println("Opção invalida");
-                    
-               // }
-                
+
         }
 
 
-    }
+    
 
-    //private String CouVouI(){
-    //String op = sc.nextLine(); 
-    //char pri = op.toUpperCase().charAt(0);
-        //return switch (pri) {
-        //    case 'C' -> "CRIAR";
-        //    default -> "";
-      //  };
-    //}
+    
     public void armazenarcartas() {
         try (BufferedReader br = new BufferedReader(new FileReader(nome+"ATA.txt"))) {
             String linha;
@@ -129,6 +101,14 @@ public class Perfil {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getNomeArquivo() {
+        return nomeArquivo;
+    }
+
+    public void setNomeArquivo(String nomeArquivo) {
+        this.nomeArquivo = nomeArquivo;
     }
 
     public Missao getMissao() {
