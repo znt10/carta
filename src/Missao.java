@@ -3,39 +3,38 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
 
+import Jogos.JogoDaAdivinhacao;
+import Jogos.JogoDaCor;
+import Jogos.JogoDaMemoria;
 public class Missao {
     private ArrayList<String> frases = new ArrayList<>();
     private ArrayList<String> nomes = new ArrayList<>();
     Colecao colecao = new Colecao();
-    CriarM m = new CriarM();
     private String nomeAt;
-    private static Scanner sc = new Scanner(System.in);
 
-    public void criarMissao(Perfil p){
-        this.nomeAt = escolherM();
+    public void criarMissao(String nome,Perfil p){
+        this.nomeAt = escolherM(nome);
 
         //verificando o arquivos de ativida
         String nomeArquivo = p.getNome() + "ATA.txt";
-        try (FileWriter fw = new FileWriter(nomeArquivo)){
+        try (FileWriter fw = new FileWriter(nomeArquivo,false)){
             fw.write(nomeAt);
         } catch (Exception e) {
             System.out.println(e.getMessage());}
         
     }
 
-    private String escolherM(){
+    private String escolherM(String escolha){
 
-        System.out.println("Jogo da Memoria ou Jogo das Cores ou Jogo de Adivinhaçao");
-        String escolha = sc.nextLine().trim();
-        char escolhaChar = escolha.toUpperCase().charAt(0);
+        
+        char escolhaChar = escolha.toUpperCase().charAt(8);
         if(escolhaChar =='M'){
             return "Memoria";
         }else if(escolhaChar =='C'){
             return "Cores";
         }else if(escolhaChar =='A')
-            return "Adivinhação";
+            return "Adivinhacao";
         return"";
     }
 
@@ -45,14 +44,20 @@ public class Missao {
             String linha;
             while ((linha = br.readLine()) != null) {
                 if(linha.equals("Memoria")){
-                    m.jogoDaMemeria();
+                    JogoDaMemoria jogo = new JogoDaMemoria();
+                    jogo.jogarDaMemoria();
                     System.out.println();
-                    
                 }else if(linha.equals("Cores")){
-                    m.jogoDeCores();
+                    JogoDaCor jogoDaCor = new JogoDaCor();
+                    jogoDaCor.jogoDeCores();
                     System.out.println();
                     
-                }else if(linha.equals("Adivinhacao"))
+                }else if(linha.equals("Adivinhacao")){
+                    JogoDaAdivinhacao jogoDaAdivinhacao = new JogoDaAdivinhacao();
+                    jogoDaAdivinhacao.jogoDeAdivinhacao();
+                    System.out.println();
+                }
+
                 ganharBoosters();
                 p.armazenarcartas(); }
             } catch (Exception e) {

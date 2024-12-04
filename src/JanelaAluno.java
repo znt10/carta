@@ -26,7 +26,10 @@ public class JanelaAluno extends Janela {
         JButton bEditar = new JButton("Editar Perfil");
         bEditar.setBounds(200, 200, 200, 20);
         bEditar.addActionListener(e -> {
-            JOptionPane.showInputDialog(null, "Mudar o nome ou Sair");
+            String nomeNovo = JOptionPane.showInputDialog(null, "Mudar o nome");
+            p.editarPerfil(nomeNovo);
+            
+            JOptionPane.showMessageDialog(frame, "Perfil editado com sucesso!");
         });
 
         // Botão para visualizar cartas

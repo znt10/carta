@@ -1,5 +1,7 @@
 
 import java.awt.*;
+import java.io.File;
+
 import javax.swing.*;
 
 public class TesteJanelaPerfil {
@@ -44,10 +46,16 @@ public class TesteJanelaPerfil {
                 String nomeAluno = nome.getText().trim();
                 String tipo = (String) comboBox.getSelectedItem();
                 if(tipo.equals("Aluno")){
-                    JOptionPane.showMessageDialog(frame, "Perfil criado para: " + nomeAluno);
+                    File file =new File(nomeAluno+".txt");
+                    if(file.exists()){
+                        JOptionPane.showMessageDialog(frame,nomeAluno+" entrou no Perfil");
+                    }else{
+                        JOptionPane.showMessageDialog(frame, "Perfil criado para: " + nomeAluno);
+                    }
                     p.criarPerfil(nomeAluno);
                 }else{
                     JOptionPane.showMessageDialog(frame, " Entrou como Supervisor");
+                    p.setNome(nomeAluno);
                     while(s.getSenhaCerta() == false){
                     String senha = JOptionPane.showInputDialog(frame, "Senha do Supervisor");
                     int senhaInt = Integer.parseInt(senha);
@@ -55,7 +63,6 @@ public class TesteJanelaPerfil {
                     if(s.getSenhaCerta() == false){
                         JOptionPane.showMessageDialog(frame, "Senha incorreta");
                     }
-
                     }
                 }
                 

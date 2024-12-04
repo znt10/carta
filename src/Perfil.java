@@ -11,31 +11,48 @@ public class Perfil {
     private String nomeArquivo;
     public int getNomeArquivo;
 
-
+    public Perfil(){
+        this.missao = new Missao();
+        this.Supervisor = new Supervisor();
+    }
     
 
     public void criarPerfil(String nomeAlo) {
         setAlu(true);
+        this.nome = nomeAlo;
         this.nomeArquivo = nomeAlo + ".txt";
         File arquivo = new File(nomeArquivo);
         
+        
         //verificando se o arquivo conta existe
         if (arquivo.exists()) {
-            System.out.println("O " + nomeAlo + " Conta");
+            System.out.println(nomeAlo + " entrou na Conta");
         } else {
-                    
+            
+            
             try (FileWriter fw = new FileWriter(nomeArquivo)) {
                 System.out.println("Perfil criado: " + nomeArquivo);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+            CriarAquivoATA(nomeAlo);
         }
         return;
                 
-
-
         }
-
+    
+    private void CriarAquivoATA(String nomeAlo) {
+        String nomeArquivo = nomeAlo + "ATA.txt";
+        File file = new File(nomeAlo);
+        if(file.exists()){
+            
+        }else{
+            try (FileWriter fw = new FileWriter(nomeArquivo)){
+            } catch (Exception e) {
+            System.out.println(e.getMessage());}
+            }
+        
+    }
 
     
 
@@ -59,41 +76,22 @@ public class Perfil {
         }
     }
 
-    public void acessarPerfil() {
+
+    public void editarPerfil(String nome) {
+        String nomeAtA = nome +"ATA.txt";
+        File arquivoNovo = new File(nomeAtA);
+        File arquivoAntigo = new File(getNome()+ "ATA.txt");
+
+
+        File fileAntigo = new File(getNome()+".txt");
+        setNome(nome);
+        File fileNovo = new File(getNome()+".txt");
+        fileAntigo.renameTo(fileNovo);
+        arquivoAntigo.renameTo(arquivoNovo);
+        return;
+    }
     
-        System.out.println("O meu nome é " + getNome());
-        editarPerfil();
-    }
 
-    private void editarPerfil() {
-        System.out.println("Deseja editar algo?");
-        System.out.println("NOME\nSAIR");
-        String op = sc.nextLine();
-
-        switch (op.toUpperCase()) {
-            case "NOME":
-                System.out.println("Mudando o NOME do perfil");
-                setNome(sc.nextLine());
-                System.out.println("O nome foi alterado para " + getNome());
-                break;
-            case "SAIR":
-                break;
-            default:
-                System.out.println("Opção inválida.");
-                editarPerfil();  // Chama novamente para opção correta
-        }
-    }
-
-    private String AouS() {
-        while (true) {
-            System.out.println("Digite ALUNO ou SUPERVISOR:");
-            String op = sc.nextLine().toUpperCase();
-            if (op.equals("ALUNO") || op.equals("SUPERVISOR")) {
-                return op;
-            }
-            System.out.println("Entrada inválida. Tente novamente.");
-        }
-    }
 
     public String getNome() {
         return nome;
