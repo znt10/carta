@@ -1,58 +1,65 @@
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.swing.*;
+import java.awt.*;
 
 public class JanelaSupervisor extends Janela {
 
     public void criarJanela(Perfil p) {
-     // Criar a janela principal
-            JFrame frame = new JFrame("Sistema do Supervisor");
-            frame.setSize(800, 500);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setLayout(null); // Layout nulo para posicionamento manual
-            
-            // Criar painel principal
-            ImageIcon imagem = new ImageIcon("imageAluno.png");
-            JLabel painel = new JLabel(imagem);
-            painel.setBounds(0, 0, frame.getWidth(), frame.getHeight()); // Layout nulo para os componentes dentro do painel
-            frame.add(painel);
-    
+        // Criar a janela principal
+        JFrame frame = new JFrame("Sistema do Supervisor");
+        frame.setSize(800, 500);  // Tamanho da janela 800x500
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(null); // Layout nulo para posicionamento manual
 
-            // Botão para realizar missões
-            JButton btnFazerMissao = new JButton("Criar Missão");
-            btnFazerMissao.setBounds(300, 370, 100, 30);
-            btnFazerMissao.addActionListener(e -> {
-                
-                String[] opcoes = {"Jogo da Memoria","Jogo da Cores", "Jogo da Adivinhaçao"};
-                JComboBox<String> box = new JComboBox<>(opcoes);
-                //posiçao do butao
-                box.setBounds(150,150,200,20);
-                box.setSelectedIndex(0);
-                painel.add(box);
-                painel.revalidate(); // Necessário para atualizar o painel
-                painel.repaint();
-                JButton bntCorfirma = new JButton("Confirmar Missão");
-                bntCorfirma.setBounds(150, 180, 200, 30);
-                bntCorfirma.addActionListener(i ->{
-                    String tipoM = (String) box.getSelectedItem();
-                    p.getSupervisor().criarM(tipoM,p);
-                }); 
-                painel.add(bntCorfirma);
-                
+        // Criar painel principal com imagem de fundo que ocupa toda a janela
+        JLabel painel = new JLabel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                ImageIcon imagemFundo = new ImageIcon("imageAluno.png");
+                g.drawImage(imagemFundo.getImage(), 0, 0, getWidth(), getHeight(), this);
+            }
+        };
+        painel.setBounds(0, 0, frame.getWidth(), frame.getHeight()); // Preencher toda a janela
+        frame.add(painel);
+
+        // Botão para criar missões (centralizado horizontalmente)
+        JButton btnFazerMissao = new JButton("Criar Missão");
+        int xPosition = (frame.getWidth() - 200) / 2; // Centralizar o botão horizontalmente
+        btnFazerMissao.setBounds(xPosition, 70, 200, 30);
+        btnFazerMissao.addActionListener(e -> {
+            // Criar combo box para escolher o tipo de missão
+            String[] opcoes = {"Jogo da Memoria", "Jogo da Cores", "Jogo da Adivinhação"};
+            JComboBox<String> box = new JComboBox<>(opcoes);
+            box.setBounds((frame.getWidth() - 200) / 2, 150, 200, 30); // Centralizar o combo box
+
+            // Adicionar combo box ao painel
+            painel.add(box);
+            painel.revalidate(); // Necessário para atualizar o painel
+            painel.repaint();
+
+            // Botão de confirmar missão
+            JButton bntCorfirma = new JButton("Confirmar Missão");
+            bntCorfirma.setBounds((frame.getWidth() - 200) / 2, 280, 200, 30); // Centralizar o botão de confirmação
+            bntCorfirma.addActionListener(i -> {
+                String tipoM = (String) box.getSelectedItem();
+                p.getSupervisor().criarM(tipoM, p);
             });
+            painel.add(bntCorfirma);
+        });
 
+        // Criar o botão "Voltar"
+        JButton btnVoltar = new JButton("Voltar");
+        btnVoltar.setBounds(frame.getWidth() - 110, 10, 100, 20);  // Posiciona o botão no canto superior esquerdo
+        btnVoltar.addActionListener(e -> {
+            frame.dispose();  // Fecha a janela atual
+            new TesteJanelaPerfil().criarJanela(p);  // Volta para a tela de perfil
+        });
 
-        
-            // Adicionar botões ao painel
-            painel.add(btnFazerMissao);
-        
+        // Adicionar botões ao painel
+        painel.add(btnFazerMissao);
+        painel.add(btnVoltar); // Adicionar o botão de voltar
 
         // Tornar a janela visível
         frame.setVisible(true);
     }
-
-    
 }

@@ -5,8 +5,8 @@ public class Carta {
     //imagem da carta
 
 
-    public Carta(String descricao, String nome) {
-        this.descricao = descricao;
+    public Carta(String nome) {
+
         this.nome = nome;
     }
 
@@ -28,6 +28,6 @@ public class Carta {
 
     @Override
     public String toString() {
-        return "Carta" + "{descricao='" + descricao +", nome='" + nome +'}';
+        return nome;
     }
 }

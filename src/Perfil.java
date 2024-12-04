@@ -30,7 +30,7 @@ public class Perfil {
         } else {
             
             
-            try (FileWriter fw = new FileWriter(nomeArquivo)) {
+            try (FileWriter fw = new FileWriter(nomeArquivo,false)) {
                 System.out.println("Perfil criado: " + nomeArquivo);
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -64,7 +64,7 @@ public class Perfil {
 
             if((linha = br.readLine()) != null){
                 try (FileWriter fw = new FileWriter(nomeArquivo,true)) {
-                    fw.write(missao.getColecao().getCarta().toString());
+                    fw.write(missao.getColecao().getCarta().getNome());
                     fw.write("\n");
                 } catch (IOException e) {
                     System.err.println("Erro ao ler o arquivo: " + e.getMessage());

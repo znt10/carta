@@ -5,13 +5,15 @@ public class Main {
         Perfil p = new Perfil();
         
         Janela j2 = new JanelaSupervisor();
-        //Janela j = new JanelaAluno();
+        Janela j = new JanelaAluno();
         
-        j2.criarJanela(p);
+        //j2.criarJanela(p);
         //j.criarJanela(p);
         //JogoDaMemoria jogo = new JogoDaMemoria();
         //jogo.jogarDaMemoria();
         TesteJanelaPerfil t = new TesteJanelaPerfil();
-        //t.criarJanela(p);
+        t.criarJanela(p);
+        //JanelaCarta jc = new JanelaCarta();
+        //jc.exibeCarta();
 }
 } 
